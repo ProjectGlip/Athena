@@ -1,8 +1,22 @@
+import java.util.Locale
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("org.jetbrains.kotlin.plugin.serialization")
 }
+
+fun getGitHashCommit(): String {
+    return try {
+        val processBuilder = ProcessBuilder("git", "rev-parse", "--short", "HEAD")
+        val process = processBuilder.start()
+        process.inputStream.bufferedReader().readText().trim()
+    } catch (e: Exception) {
+        "unknown"
+    }
+}
+
+val gitHash: String = getGitHashCommit().uppercase(Locale.getDefault())
 
 android {
     namespace = "dev.sebaubuntu.athena"
@@ -13,7 +27,7 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 12
-        versionName = "1.0.2"
+        versionName = "1.0.2 ($gitHash)"
 
         externalNativeBuild {
             cmake {
