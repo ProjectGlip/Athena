@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(
                     contentView, R.string.export_data_missing_permissions, Snackbar.LENGTH_LONG
                 ).show()
+                Snackbar.make(
+                    contentView, R.string.shizukuButton_missing_permissions, Snackbar.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -97,6 +100,24 @@ class MainActivity : AppCompatActivity() {
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.export_data)
                 .setMessage(R.string.export_data_description)
+                .setPositiveButton(R.string.yes) { _, _ ->
+                    requestPermissionsContract.launch(
+                        SectionEnum.values().map {
+                            it.clazz.requiredPermissions.toList()
+                        }.flatten().toTypedArray()
+                    )
+                }
+                .setNegativeButton(R.string.no) { _, _ ->
+                    // Do nothing
+                }
+                .show()
+
+            true
+        }
+        R.id.shizukuButton -> {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.shizukuButton)
+                .setMessage(R.string.shizukuButton_description)
                 .setPositiveButton(R.string.yes) { _, _ ->
                     requestPermissionsContract.launch(
                         SectionEnum.values().map {
