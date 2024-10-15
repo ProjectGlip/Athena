@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "dev.sebaubuntu.athena"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 35
         versionCode = 12
         versionName = "1.0.2"
