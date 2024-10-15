@@ -20,6 +20,11 @@ android {
                 arguments("-DANDROID_STL=c++_shared")
             }
         }
+        ndk {
+            // Specifies the ABI configurations of your native
+            // libraries Gradle should build and package with your app.
+            abiFilters += listOf("arm64-v8a")
+        }
     }
 
     buildTypes {
