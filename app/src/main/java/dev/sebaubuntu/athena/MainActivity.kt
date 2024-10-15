@@ -44,7 +44,6 @@ import android.content.Context
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.BatteryManager
-import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
