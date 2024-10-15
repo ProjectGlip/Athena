@@ -39,6 +39,28 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import java.io.FileWriter
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.IntentFilter
+import android.content.pm.PackageManager
+import android.os.BatteryManager
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import com.google.android.material.card.MaterialCardView
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+
+
 class MainActivity : AppCompatActivity() {
     // Views
     private val contentView by lazy { findViewById<View>(android.R.id.content) }
