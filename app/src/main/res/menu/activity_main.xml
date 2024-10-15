@@ -12,5 +12,12 @@
         android:title="@string/export_data"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/shizukuButton"
+        android:icon="@drawable/ic_data_object"
+        android:title="@string/shizukuButton"
+        app:iconTint="?attr/colorOnSurface"
+        app:showAsAction="ifRoom" />
+
 
 </menu>
