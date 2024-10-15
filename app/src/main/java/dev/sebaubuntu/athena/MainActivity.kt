@@ -255,7 +255,7 @@ class MainActivity : AppCompatActivity() {
                     // updateHiddenData()
                 } else {
                     findViewById<Button>(R.id.perm_request_button).setOnClickListener {
-                        startActivity(Intent(this, PermGrantActivity::class.java))
+                        startActivity(Intent(CurrentActivity.this, PermGrantActivity::class.java))
                     }
                 }
             }
