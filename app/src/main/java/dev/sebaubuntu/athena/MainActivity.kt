@@ -82,9 +82,6 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(
                     contentView, R.string.export_data_missing_permissions, Snackbar.LENGTH_LONG
                 ).show()
-                Snackbar.make(
-                    contentView, R.string.shizukuButton_missing_permissions, Snackbar.LENGTH_LONG
-                ).show()
             }
         }
     }
