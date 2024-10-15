@@ -885,4 +885,14 @@
     <string name="battery_charge_policy_desc">charging policy</string>
     <string name="dlg_warning_title">Warning</string>
     <string name="dlg_compat_desc">Batt might not work correctly on this device. This is not due to an error in Batt, but an error in this device\'s version of Android.</string>
+
+    
+
+    <!-- Export data -->
+    <string name="shizukuButton">Shizuku Button</string>
+    <string name="shizukuButton_description">Do you want to allow Shizuku perms for the app?</string>
+    <string name="shizukuButton_missing_permissions">Shizuku permission not granted</string>
+    <string name="shizukuButton_done">Shizuku permission acquired</string>
+    <string name="shizukuButton_open_file">Shizuku open?</string>
+     
 </resources>
