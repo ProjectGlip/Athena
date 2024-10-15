@@ -34,6 +34,17 @@ android {
                 arguments("-DANDROID_STL=c++_shared")
             }
         }
+
+        signingConfigs.create("config") {
+            val androidStoreFile = project.findProperty("androidStoreFile") as String?
+            if (!androidStoreFile.isNullOrEmpty()) {
+                storeFile = rootProject.file(androidStoreFile)
+                storePassword = project.property("androidStorePassword") as String
+                keyAlias = project.property("androidKeyAlias") as String
+                keyPassword = project.property("androidKeyPassword") as String
+            }
+        }
+
         ndk {
             // Specifies the ABI configurations of your native
             // libraries Gradle should build and package with your app.
@@ -42,7 +53,20 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        all {
+            signingConfig =
+                if (signingConfigs["config"].storeFile != null) signingConfigs["config"] else signingConfigs["debug"]
+            if (project.hasProperty("minify") && project.properties["minify"].toString()
+                    .toBoolean()
+            ) {
+                isMinifyEnabled = true
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            }
+        }
+        release {
             // Enables code shrinking, obfuscation, and optimization.
             isMinifyEnabled = true
 
@@ -57,7 +81,7 @@ android {
                 )
             )
         }
-        getByName("debug") {
+        debug {
             // Append .dev to package name so we won't conflict with AOSP build.
             applicationIdSuffix = ".dev"
         }
