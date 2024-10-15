@@ -195,6 +195,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun shizukuButton() {
+        lifecycleScope.launch {
+            linearProgressIndicator.progress = 0
+            linearProgressIndicator.isVisible = true
+
+            withContext(Dispatchers.IO) {
+                if (ContextCompat.checkSelfPermission(this, BATTERY_STATS_PERM) == PackageManager.PERMISSION_GRANTED) {
+                    findViewById<MaterialCardView>(R.id.perm_request).visibility = View.GONE
+        
+                    // Enable extra features
+                    // findViewById<LinearLayout>(R.id.extra_health).visibility = View.VISIBLE
+                    // findViewById<MaterialCardView>(R.id.extra_mfc_date).visibility = View.VISIBLE
+                    // findViewById<MaterialCardView>(R.id.extra_use_date).visibility = View.VISIBLE
+                    // findViewById<MaterialCardView>(R.id.extra_charge_policy).visibility = View.VISIBLE
+        
+                    // updateHiddenData()
+                } else {
+                    findViewById<Button>(R.id.perm_request_button).setOnClickListener {
+                        startActivity(Intent(this, PermGrantActivity::class.java))
+                    }
+                }
+            }
+        }
+    }
+
     companion object {
         private const val JSON_MIME_TYPE = "application/json"
 
