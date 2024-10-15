@@ -137,8 +137,8 @@ class MainActivity : AppCompatActivity() {
                 .setTitle(R.string.shizukuButton)
                 .setMessage(R.string.shizukuButton_description)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    // shizukuButton()
-                    startActivity(Intent(this, PermGrantActivity::class.java))
+                    shizukuButton()
+                    // startActivity(Intent(this, PermGrantActivity::class.java))
                     // requestPermissionsContract.launch(
                     //     SectionEnum.values().map {
                     //         it.clazz.requiredPermissions.toList()
@@ -243,7 +243,7 @@ class MainActivity : AppCompatActivity() {
 
         //     withContext(Dispatchers.IO) {
                 if (ContextCompat.checkSelfPermission(this, BATTERY_STATS_PERM) == PackageManager.PERMISSION_GRANTED) {
-                    findViewById<MaterialCardView>(R.id.perm_request).visibility = View.GONE
+                    findViewById<MaterialCardView>(R.id.shizukuButton).visibility = View.GONE
         
                     // Enable extra features
                     // findViewById<LinearLayout>(R.id.extra_health).visibility = View.VISIBLE
@@ -253,7 +253,7 @@ class MainActivity : AppCompatActivity() {
         
                     // updateHiddenData()
                 } else {
-                    findViewById<Button>(R.id.perm_request_button).setOnClickListener {
+                    findViewById<Button>(R.id.shizukuButton).setOnClickListener {
                         startActivity(Intent(this, PermGrantActivity::class.java))
                     }
                 }
