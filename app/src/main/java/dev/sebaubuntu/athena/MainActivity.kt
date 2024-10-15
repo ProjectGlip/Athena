@@ -245,7 +245,7 @@ class MainActivity : AppCompatActivity() {
 
         //     withContext(Dispatchers.IO) {
                 if (ContextCompat.checkSelfPermission(this, BATTERY_STATS_PERM) == PackageManager.PERMISSION_GRANTED) {
-                    findViewById<MaterialCardView>(R.id.shizukuButton).visibility = View.GONE
+                    findViewById<MaterialCardView>(R.id.perm_request).visibility = View.GONE
         
                     // Enable extra features
                     // findViewById<LinearLayout>(R.id.extra_health).visibility = View.VISIBLE
