@@ -137,7 +137,8 @@ class MainActivity : AppCompatActivity() {
                 .setTitle(R.string.shizukuButton)
                 .setMessage(R.string.shizukuButton_description)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    shizukuButton()
+                    // shizukuButton()
+                    startActivity(Intent(this, PermGrantActivity::class.java))
                     // requestPermissionsContract.launch(
                     //     SectionEnum.values().map {
                     //         it.clazz.requiredPermissions.toList()
