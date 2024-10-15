@@ -857,4 +857,32 @@
     <!-- Props section -->
     <string name="section_props_name">Props</string>
     <string name="section_props_description">Android property list</string>
+
+     
+    <string name="api_name_battery">Battery status</string>
+    <string name="battery_cycles_desc">charge cycles</string>
+    <string name="battery_charge_status_desc">charging status</string>
+    <string name="perm_request_title">Want more data?</string>
+    <string name="perm_request_desc">Batt can show more data about your battery, like the estimated capacity. You just have to do some set-up first.</string>
+    <string name="perm_request_btn">Let\'s go</string>
+    <string name="activity_perm_title">Grant permissions</string>
+    <string name="activity_perm_desc">Make sure that you have the Shizuku app installed. If it is, you will be asked to grant a permission.\n\nNote that anything using Shizuku might cause harm to your device.</string>
+    <string name="extra_capacity_desc">%d%% of original capacity</string>
+    <string name="battery_health_mid">Moderate</string>
+    <string name="battery_health_bad">Poor health</string>
+    <string name="extra_mfc_date">manufacturing date</string>
+    <string name="extra_use_date">first usage date</string>
+    <string name="not_udc_error">Android 14 is required to run this app</string>
+    <string name="dlg_noShizuku_title">Shizuku is required</string>
+    <string name="dlg_noShizuku_desc">Shizuku isn\'t installed. Please install it from the Play Store and set it up.</string>
+    <string name="missing_data_title">Can\'t find something?</string>
+    <string name="missing_data_desc">Your device didn\'t report everything correctly. The incorrect options have been hidden. If you still want to see them, tap this card.</string>
+    <string name="missing_data_btn">Show</string>
+    <string name="battery_charge_policy_default">Default</string>
+    <string name="battery_charge_policy_aon">Static</string>
+    <string name="battery_charge_policy_ac">Adaptive</string>
+    <string name="battery_charge_policy_longlife">Always charging</string>
+    <string name="battery_charge_policy_desc">charging policy</string>
+    <string name="dlg_warning_title">Warning</string>
+    <string name="dlg_compat_desc">Batt might not work correctly on this device. This is not due to an error in Batt, but an error in this device\'s version of Android.</string>
 </resources>
