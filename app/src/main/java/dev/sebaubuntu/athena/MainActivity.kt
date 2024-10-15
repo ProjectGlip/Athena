@@ -238,11 +238,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shizukuButton() {
-        lifecycleScope.launch {
-            linearProgressIndicator.progress = 0
-            linearProgressIndicator.isVisible = true
+        // lifecycleScope.launch {
+        //     linearProgressIndicator.progress = 0
+        //     linearProgressIndicator.isVisible = true
 
-            withContext(Dispatchers.IO) {
+        //     withContext(Dispatchers.IO) {
                 if (ContextCompat.checkSelfPermission(this, BATTERY_STATS_PERM) == PackageManager.PERMISSION_GRANTED) {
                     findViewById<MaterialCardView>(R.id.perm_request).visibility = View.GONE
         
@@ -255,11 +255,11 @@ class MainActivity : AppCompatActivity() {
                     // updateHiddenData()
                 } else {
                     findViewById<Button>(R.id.perm_request_button).setOnClickListener {
-                        startActivity(Intent(CurrentActivity.this, PermGrantActivity::class.java))
+                        startActivity(Intent(this, PermGrantActivity::class.java))
                     }
                 }
-            }
-        }
+            // }
+        // }
     }
 
     companion object {
