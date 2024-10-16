@@ -35,15 +35,32 @@ android {
             }
         }
 
-        signingConfigs.create("config") {
-            val androidStoreFile = project.findProperty("androidStoreFile") as String?
-            if (!androidStoreFile.isNullOrEmpty()) {
-                storeFile = rootProject.file(androidStoreFile)
-                storePassword = project.property("androidStorePassword") as String
-                keyAlias = project.property("androidKeyAlias") as String
-                keyPassword = project.property("androidKeyPassword") as String
-            }
-        }
+        signingConfigs {
+               release {
+                   def tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+                   def allFilesFromDir = new File(tmpFilePath).listFiles()
+
+                   if (allFilesFromDir != null) {
+                       def keystoreFile = allFilesFromDir.first()
+                       keystoreFile.renameTo("keystore/your_keystore.jks")
+                   }
+
+                   storeFile = file("keystore/your_keystore.jks")
+                   storePassword System.getenv("SIGNING_STORE_PASSWORD")
+                   keyAlias System.getenv("SIGNING_KEY_ALIAS")
+                   keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+               }
+           }
+
+//        signingConfigs.create("config") {
+//            val androidStoreFile = project.findProperty("androidStoreFile") as String?
+//            if (!androidStoreFile.isNullOrEmpty()) {
+//                storeFile = rootProject.file(androidStoreFile)
+//                storePassword = project.property("androidStorePassword") as String
+//                keyAlias = project.property("androidKeyAlias") as String
+//                keyPassword = project.property("androidKeyPassword") as String
+//            }
+//        }
 
         ndk {
             // Specifies the ABI configurations of your native
