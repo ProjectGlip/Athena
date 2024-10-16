@@ -35,33 +35,6 @@ android {
             }
         }
 
-        signingConfigs {
-               release {
-                   val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
-                   val allFilesFromDir = new File(tmpFilePath).listFiles()
-
-                   if (allFilesFromDir != null) {
-                       def keystoreFile = allFilesFromDir.first()
-                       keystoreFile.renameTo("keystore/your_keystore.jks")
-                   }
-
-                   storeFile = file("keystore/your_keystore.jks")
-                   storePassword System.getenv("KEY_STORE_PASSWORD")
-                   keyAlias System.getenv("ALIAS")
-                   keyPassword System.getenv("KEY_PASSWORD")
-               }
-           }
-
-//        signingConfigs.create("config") {
-//            val androidStoreFile = project.findProperty("androidStoreFile") as String?
-//            if (!androidStoreFile.isNullOrEmpty()) {
-//                storeFile = rootProject.file(androidStoreFile)
-//                storePassword = project.property("androidStorePassword") as String
-//                keyAlias = project.property("androidKeyAlias") as String
-//                keyPassword = project.property("androidKeyPassword") as String
-//            }
-//        }
-
         ndk {
             // Specifies the ABI configurations of your native
             // libraries Gradle should build and package with your app.
@@ -70,19 +43,6 @@ android {
     }
 
     buildTypes {
-        all {
-            signingConfig =
-                if (signingConfigs["config"].storeFile != null) signingConfigs["config"] else signingConfigs["debug"]
-            if (project.hasProperty("minify") && project.properties["minify"].toString()
-                    .toBoolean()
-            ) {
-                isMinifyEnabled = true
-                proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-                )
-            }
-        }
         release {
             // Enables code shrinking, obfuscation, and optimization.
             isMinifyEnabled = true
