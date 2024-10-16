@@ -58,7 +58,7 @@ jobs:
       run: |
         ls | grep 'signed\.apk$' && find . -type f -name '*.apk' ! -name '*-signed.apk' -delete
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v2
       with:
         name: app
         path: ${{steps.sign_app.outputs.signedReleaseFile}}
