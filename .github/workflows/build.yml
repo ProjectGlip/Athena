@@ -33,11 +33,27 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleDebug
 
+    - name: Sign Apk
+      continue-on-error: true
+      id: sign_apk
+      uses: r0adkll/sign-android-release@v1
+      with:
+        releaseDir: app/build/outputs/apk/debug
+        signingKeyBase64: ${{ secrets.KEY_BASE64 }}
+        alias: ${{ secrets.KEY_ALIAS }}
+        keyStorePassword: ${{ secrets.KEYSTORE_PASS }}
+        keyPassword: ${{ secrets.KEYSTORE_PASS }}
+
+    - name: Remove file that aren't signed
+      continue-on-error: true
+      run: |
+        ls | grep 'signed\.apk$' && find . -type f -name '*.apk' ! -name '*-signed.apk' -delete
+
     - uses: actions/upload-artifact@v3
       with:
         name: app-debug.apk
         path: app/build/outputs/apk/debug/app-debug.apk
-
+        
     - name: Create release
       uses: marvinpinto/action-automatic-releases@latest
       if: github.ref == 'refs/heads/master'
