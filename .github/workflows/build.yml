@@ -21,8 +21,7 @@ jobs:
       uses: lukka/get-cmake@latest
 
     - name: Write key
-        if: github.event_name != 'pull_request'
-        run: |
+      run: |
           if [ ! -z "${{ secrets.KEY_STORE }}" ]; then
           echo androidStorePassword='${{ secrets.KEY_STORE_PASSWORD }}' >> gradle.properties
           echo androidKeyAlias='${{ secrets.ALIAS }}' >> gradle.properties
