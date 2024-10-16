@@ -33,6 +33,13 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleDebug
 
+    - name: Setup build tool version variable
+      shell: bash
+      run: |
+        BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
+        echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
+        echo Last build tool version is: $BUILD_TOOL_VERSION
+
     - name: Sign Apk
       continue-on-error: true
       id: sign_apk
@@ -43,6 +50,8 @@ jobs:
         alias: ${{ secrets.KEY_ALIAS }}
         keyStorePassword: ${{ secrets.KEYSTORE_PASS }}
         keyPassword: ${{ secrets.KEYSTORE_PASS }}
+      env:
+        BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
 
     - name: Remove file that aren't signed
       continue-on-error: true
@@ -51,16 +60,18 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: app-debug.apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: app
+        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+      #  name: app-debug.apk
+      #  path: app/build/outputs/apk/debug/app-debug.apk
         
-    - name: Create release
-      uses: marvinpinto/action-automatic-releases@latest
-      if: github.ref == 'refs/heads/master'
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        automatic_release_tag: "latest"
-        prerelease: false
-        title: ${{ github.sha }}
-        files: |
-          app/build/outputs/apk/debug/app-debug.apk
+#    - name: Create release
+#      uses: marvinpinto/action-automatic-releases@latest
+#      if: github.ref == 'refs/heads/master'
+#      with:
+#        repo_token: ${{ secrets.GITHUB_TOKEN }}
+#        automatic_release_tag: "latest"
+#        prerelease: false
+#        title: ${{ github.sha }}
+#        files: |
+#          app/build/outputs/apk/debug/app-debug.apk
